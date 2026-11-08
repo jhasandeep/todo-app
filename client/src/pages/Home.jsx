@@ -84,7 +84,7 @@ export default function Home({ onAdd, onOpenTask }) {
         </div>
 
         {!loading && weeks.length > 0 && (
-          <p className="pt-6 text-center text-xs text-gray-400">Swipe a task left to delete it</p>
+          <p className="pt-6 text-center text-xs text-gray-400 md:hidden">Swipe a task left to delete it</p>
         )}
       </main>
 
