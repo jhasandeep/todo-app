@@ -43,3 +43,6 @@ Task fields: `title`, `description`, `dueAt`, `priority` (low, medium, high), `s
 1. Create a MongoDB Atlas cluster and copy the connection string.
 2. Deploy `server/` to Render (there is a `render.yaml`). Set `MONGODB_URI` and `CLIENT_ORIGIN` (the Netlify URL).
 3. Deploy `client/` to Netlify. Set `VITE_API_URL` to `https://<your-render-app>.onrender.com/api` and redeploy after setting it.
+
+### Deploying the API on Vercel instead of Render
+`server/` also works as a Vercel project (`server/api/index.js` + `server/vercel.json`). Set the Root Directory to `server` and add `MONGODB_URI` (and optionally `CLIENT_ORIGIN`) in the project settings. In Atlas, Network Access must allow `0.0.0.0/0`.
