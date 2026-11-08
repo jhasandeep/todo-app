@@ -1,9 +1,29 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import tasksRouter from './routes/tasks.js';
 
-export function createApp({ clientOrigin = '*' } = {}) {
+let connecting;
+function connect(uri) {
+  if (!connecting) {
+    connecting = mongoose.connect(uri).catch((err) => {
+      connecting = null;
+      console.error('MongoDB connection failed:', err.message);
+    });
+  }
+  return connecting;
+}
+
+export function createApp({ clientOrigin = '*', mongoUri } = {}) {
   const app = express();
+
+  // used on Vercel, where there is no server start-up step to connect the db
+  if (mongoUri) {
+    app.use((_req, _res, next) => {
+      connect(mongoUri);
+      next();
+    });
+  }
 
   const origins = clientOrigin.split(',').map((o) => o.trim()).filter(Boolean);
   app.use(cors({ origin: origins.includes('*') ? true : origins }));
@@ -33,3 +53,9 @@ export function createApp({ clientOrigin = '*' } = {}) {
 
   return app;
 }
+
+// default export is what Vercel looks for
+export default createApp({
+  clientOrigin: process.env.CLIENT_ORIGIN,
+  mongoUri: process.env.MONGODB_URI,
+});
