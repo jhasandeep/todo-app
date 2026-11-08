@@ -14,7 +14,7 @@ export default function App() {
   const closeSheet = useCallback(() => setSheet(null), []);
 
   return (
-    <div className="relative mx-auto flex min-h-dvh w-full max-w-md flex-col bg-gray-50 shadow-xl">
+    <div className="relative flex min-h-dvh w-full flex-col bg-gray-50">
       <Routes>
         <Route path="/" element={<Home onAdd={openAdd} onOpenTask={openTask} />} />
         <Route path="/search" element={<Search onOpenTask={openTask} />} />
@@ -26,7 +26,7 @@ export default function App() {
       {error && tasks.length > 0 && (
         <div
           role="alert"
-          className="fixed inset-x-4 bottom-24 z-40 mx-auto flex max-w-sm items-center justify-between gap-3 rounded-xl bg-gray-900 px-4 py-3 text-sm text-white shadow-lg"
+          className="fixed inset-x-4 bottom-24 z-40 mx-auto flex max-w-sm items-center justify-between gap-3 rounded-xl bg-gray-900 px-4 py-3 text-sm text-white shadow-lg md:bottom-6"
         >
           <span>{error}</span>
           <button onClick={() => setError('')} className="font-semibold text-brand-100">
