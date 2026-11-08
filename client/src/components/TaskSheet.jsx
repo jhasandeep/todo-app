@@ -109,12 +109,12 @@ export default function TaskSheet({ task, onClose }) {
     }`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" role="dialog" aria-modal="true" aria-label={isEdit ? 'Edit task' : 'Add task'}>
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-label={isEdit ? 'Edit task' : 'Add task'}>
       <div className="animate-fade-in absolute inset-0 bg-black/40" onClick={onClose} />
       <form
         onSubmit={submit}
         noValidate
-        className="animate-sheet-in relative max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl"
+        className="animate-sheet-in relative max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-white p-5 sm:max-w-lg sm:rounded-3xl sm:p-6 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl"
       >
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-bold">{isEdit ? 'Edit task' : 'New task'}</h2>

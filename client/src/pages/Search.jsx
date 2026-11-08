@@ -46,7 +46,8 @@ export default function Search({ onOpenTask }) {
 
   return (
     <>
-      <header className="sticky top-0 z-10 flex items-center gap-3 bg-gray-50/90 px-5 pb-3 pt-[max(1.25rem,env(safe-area-inset-top))] backdrop-blur">
+      <header className="sticky top-0 z-10 bg-gray-50/90 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-3xl items-center gap-3 px-4 pb-3 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-6">
         <Link
           to="/"
           aria-label="Back"
@@ -75,9 +76,10 @@ export default function Search({ onOpenTask }) {
             </button>
           )}
         </div>
+        </div>
       </header>
 
-      <main className="flex-1 space-y-3 px-5 pb-10 pt-2" aria-live="polite">
+      <main className="mx-auto w-full max-w-3xl flex-1 space-y-3 px-4 pb-10 pt-2 sm:px-6" aria-live="polite">
         {!term && <p className="mt-16 text-center text-sm text-gray-500">Type a keyword to find your tasks.</p>}
         {term && loading && visible.length === 0 && <p className="mt-16 text-center text-sm text-gray-500">Searching...</p>}
         {term && error && <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}

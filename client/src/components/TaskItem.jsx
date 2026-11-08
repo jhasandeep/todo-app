@@ -112,11 +112,12 @@ export default function TaskItem({ task, onOpen, showActions = false }) {
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        className={`relative flex w-full cursor-pointer select-none items-start gap-3 border border-gray-100 bg-white p-3.5 text-left shadow-sm ${
+        className={`group relative flex w-full cursor-pointer select-none items-start gap-3 border border-gray-100 bg-white p-3.5 text-left shadow-sm ${
           dragging ? '' : 'transition-transform duration-200'
         }`}
         style={{ transform: `translateX(${offset}px)`, touchAction: 'pan-y' }}
       >
+        <div className="flex flex-col items-center gap-2">
         <button
           type="button"
           data-no-swipe
@@ -132,6 +133,21 @@ export default function TaskItem({ task, onOpen, showActions = false }) {
         >
           <CheckIcon size={14} />
         </button>
+        {!showActions && (
+          <button
+            type="button"
+            data-no-swipe
+            onClick={(e) => {
+              e.stopPropagation();
+              remove();
+            }}
+            aria-label={`Remove ${task.title}`}
+            className="hidden rounded-md p-0.5 text-gray-400 opacity-0 transition hover:text-red-600 focus-visible:opacity-100 group-hover:opacity-100 md:block"
+          >
+            <TrashIcon size={16} />
+          </button>
+        )}
+        </div>
 
         <div className="min-w-0 flex-1">
           <div
