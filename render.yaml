@@ -1,0 +1,14 @@
+# Render blueprint for the API (https://render.com). The client is deployed on Netlify.
+services:
+  - type: web
+    name: todo-app-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
